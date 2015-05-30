@@ -44,7 +44,7 @@ RUN
 ====
 
 ```
-$ go run main.go
+$ export PORT=3006 && go run main.go
 [martini] listening on :3006 (development)
 ```
 
