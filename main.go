@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"net/http"
+	"os"
 	"twittbid/twittbid"
 
 	"github.com/go-martini/martini"
@@ -10,6 +11,10 @@ import (
 
 func main() {
 	m := martini.Classic()
+	p := os.Getenv("PORT")
+	if p == "" {
+		panic("Env Variable PORT not set!")
+	}
 
 	m.Get("/", func() string {
 		return "TwittBid REST API, usage --> search/golang"
@@ -17,7 +22,7 @@ func main() {
 
 	m.Get("/search/:hashtag", listByHashtag)
 
-	m.RunOnAddr(":3006")
+	m.RunOnAddr(":" + os.Getenv("PORT"))
 
 }
 
